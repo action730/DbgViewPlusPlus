@@ -39,8 +39,12 @@ int main(unsigned int argc, char *argv[])
 				std::transform(givenName.begin(), givenName.end(), givenName.begin(), ::tolower);
 				idx++;
 			}
+			else if (tok == "-h") {
+				printUsage();
+				return -1;
+			}
 			else {
-				printf("Unknown parameter \"%s\"\n.", tok.c_str());
+				printf("Unknown parameter \"%s\".\n", tok.c_str());
 				printUsage();
 				return -1;
 			}
@@ -100,7 +104,7 @@ int main(unsigned int argc, char *argv[])
 				}
 			}
 
-			if (filtering && tgtPid == dbgBuf->PID)
+			if (!filtering || tgtPid == dbgBuf->PID)
 				printf("[%d] %s\n", dbgBuf->PID, &(dbgBuf->msg));
 			memset(static_cast<void *>(dbgBuf), 0, 4096);
 			SetEvent(hBufReady);
