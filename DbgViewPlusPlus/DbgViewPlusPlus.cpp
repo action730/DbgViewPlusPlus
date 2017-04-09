@@ -40,7 +40,7 @@ int main(unsigned int argc, char *argv[])
 				idx++;
 			}
 			else {
-				printf("Unknown parameter \"%s\"\n.", tok);
+				printf("Unknown parameter \"%s\"\n.", tok.c_str());
 				printUsage();
 				return -1;
 			}
